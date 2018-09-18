@@ -16,6 +16,7 @@ public class GMailPageTest {
 						"username: testuser \n" + 
 						"password: testpwd\n";
 	
+	@SuppressWarnings("unchecked")
 	@DataProvider(name = "dp")
 	public Object[][] parseYaml() {
 	    Yaml yaml = new Yaml();	    

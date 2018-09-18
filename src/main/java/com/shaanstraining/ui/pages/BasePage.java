@@ -6,6 +6,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 
 import com.shaanstraining.ui.util.DriverUtils;
 
@@ -41,6 +42,12 @@ public abstract class BasePage {
         }
 		return props;
 		
+	}
+	
+	@AfterClass
+	public void tearDown() {
+		driver.close();
+		driver.quit();
 	}
 
 }
