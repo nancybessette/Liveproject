@@ -1,0 +1,9 @@
+- user:
+   username: testuser1
+   password: testpwd1
+- user:
+   username: testuser2
+   password: testpwd2
+- user:
+   username: testuser3
+   password: testpwd3   

@@ -27,6 +27,17 @@
       	<artifactId>log4j-core</artifactId>
       	<version>2.11.1</version>
     </dependency>
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>3.1.1</version>
+      <scope>test</scope>
+	</dependency>
+	<dependency>
+    	<groupId>com.googlecode.json-simple</groupId>
+	    <artifactId>json-simple</artifactId>
+	    <version>1.1.1</version>
+	</dependency>
   </dependencies>
   <!-- <build>
   	<sourceDirectory>src/test/java</sourceDirectory>
