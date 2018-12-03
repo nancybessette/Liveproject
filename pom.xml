@@ -39,6 +39,10 @@
 	    <version>1.1.1</version>
 	</dependency>
   </dependencies>
+  <properties>
+   <maven.compiler.source>1.6</maven.compiler.source>
+   <maven.compiler.target>1.6</maven.compiler.target>
+ </properties>
   <!-- <build>
   	<sourceDirectory>src/test/java</sourceDirectory>
       <plugins>
