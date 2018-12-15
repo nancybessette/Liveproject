@@ -1,5 +1,5 @@
 package com.shaanstraining.ui.pages;
 
-public class GMailPage {
+public class GMailPage extends BasePage{
 
 }

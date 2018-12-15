@@ -19,7 +19,7 @@ public class DriverUtils {
 	private static final String DRIVER_PROP_FILE = "src/main/resources/driver.properties";
 	
 	public static WebDriver getDriver(WebDriver driver, String browser, String baseUrl) throws IOException,
-	FileNotFoundException {
+	FileNotFoundException, Exception {
 		
 		props = new Properties();
 		props.load(new FileInputStream(DRIVER_PROP_FILE));
@@ -29,7 +29,7 @@ public class DriverUtils {
 				FirefoxOptions options = new FirefoxOptions();
 				options.setCapability(CapabilityType.BROWSER_VERSION, 48);
 				
-				System.setProperty("webdriver.gecko.driver", Constants.FIREFOX_DRIVER_WIN);
+				System.setProperty("webdriver.gecko.driver", props.getProperty(Constants.FIREFOX_DRIVER_WIN));
 				driver = new FirefoxDriver();
 			}
 			if (browser.equalsIgnoreCase("chrome")) {
@@ -41,7 +41,7 @@ public class DriverUtils {
 				options.introduceFlakinessByIgnoringSecurityDomains();
 				options.ignoreZoomSettings();
 				
-				System.setProperty("webdriver.ie.driver", Constants.IE_DRIVER_WIN);	
+				System.setProperty("webdriver.ie.driver", props.getProperty(Constants.IE_DRIVER_WIN));	
 				driver = new InternetExplorerDriver(options);
 			}	
 			
@@ -50,7 +50,7 @@ public class DriverUtils {
 				FirefoxOptions options = new FirefoxOptions();
 				options.setCapability(CapabilityType.BROWSER_VERSION, 48);
 				
-				System.setProperty("webdriver.gecko.driver", Constants.FIREFOX_DRIVER_MAC);	
+				System.setProperty("webdriver.gecko.driver", props.getProperty(Constants.FIREFOX_DRIVER_MAC));	
 				driver = new FirefoxDriver();
 				
 			}
@@ -62,7 +62,7 @@ public class DriverUtils {
 		}
 		
 		driver.get(baseUrl);
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		
 		return driver;
 	}

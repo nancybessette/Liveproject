@@ -13,7 +13,7 @@ import io.restassured.response.ResponseBody;
 
 public class TranslateAPITest {
 	static final String JSON_FILE = "src/test/resources/translate-api.json";
-	static String TOKEN = "ya29.c.ElooBngdab22TM4xMjukcJM8mPTznoTRO0-SvvgaT7tVtilB65OJZ5JoJUh7UinaxeeJaQFQnbjOld77xCz68GDdfGp6dOJKaEG4Ucy44Z9Pt-3ClFQEeAkmyDs";
+	static String TOKEN = "ya29.c.ElpsBrrj0GGyRPdYRoHQEbgUet5UZp47RTJMiEakVaOW1wIDX5Dmjo4pcAPLkUk01Eka5eJL4ScwQpIF50T9PiuN-_DRxqCyAp5F1MqEY_Cmvx9w_AK9n3QOmS4";
 
 	@Test
 	public void traslateTest() throws Exception {
@@ -21,16 +21,17 @@ public class TranslateAPITest {
 		Object obj = parser.parse(new FileReader(JSON_FILE));
 
         JSONObject jsonObject = (JSONObject) obj;
-        
-		Response response = given().
+                
+		Response response = 
+		given().
 			header("Authorization", "Bearer " + TOKEN).
-			contentType("application/json").and().
+			header("contentType", "application/json").and().
 			body(jsonObject.toJSONString()).
         when().
         	post("https://translation.googleapis.com/language/translate/v2");
 		
 		if(response.statusCode() != 200) {
-			throw new Exception("Exception message...");
+			throw new Exception("Unexpected Response code: " + response.getStatusCode());
 		}
 		
 		ResponseBody responseBody = response.body();
