@@ -14,5 +14,7 @@ public class HomePageTest{
 	public void search(){
 		log.debug("before calling the search..");
 		homePage.search("Selenium WebDriver");
+		
+		log.debug("after calling the search..");
 	}
 }
