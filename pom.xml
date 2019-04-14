@@ -30,7 +30,7 @@
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <version>3.1.1</version>
+      <version>3.3.0</version>
       <scope>test</scope>
 	</dependency>
 	<dependency>
@@ -39,8 +39,7 @@
 	    <version>1.1.1</version>
 	</dependency>
   </dependencies>
-  <!-- <build>
-  	<sourceDirectory>src/test/java</sourceDirectory>
+  <build>
       <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -48,10 +47,10 @@
             <version>2.22.0</version>
             <configuration>
               <suiteXmlFiles>
-                <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                <suiteXmlFile>src/test/resources/regression.xml</suiteXmlFile>
               </suiteXmlFiles>
             </configuration>
           </plugin>
     </plugins>
-  </build>   -->
+  </build>  
 </project>
