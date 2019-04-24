@@ -6,18 +6,25 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.shaanstraining.ui.util.DriverUtils;
 
 public abstract class BasePage {
-	protected WebDriver driver;
+	protected RemoteWebDriver driver;
 	private Properties props = getProperties();
 	
 	public BasePage() {
 		try {
 			String baseUrl = props.getProperty("baseUrl");
 			String browser = props.getProperty("defaultBrowser");
-			driver = DriverUtils.getDriver(driver, browser, baseUrl);
+			
+			String hub = (String) props.getOrDefault("hub", "");
+			if (hub.isEmpty()) {
+				driver = DriverUtils.getDriver(driver, browser, baseUrl);
+			}else {
+				driver = DriverUtils.getDriver(driver, hub, browser, baseUrl);
+			}
 			
 			long implicitWaitTimeout = Long.parseLong(props.getProperty("implicitWaitTimeout"));
 			driver.manage().timeouts().implicitlyWait(implicitWaitTimeout, TimeUnit.MILLISECONDS);
