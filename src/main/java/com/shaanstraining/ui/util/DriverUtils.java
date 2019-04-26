@@ -73,6 +73,10 @@ public class DriverUtils {
 	FileNotFoundException, Exception {
 		if (browser.equalsIgnoreCase("chrome")) {
 			ChromeOptions options = new ChromeOptions();
+			options.setCapability("version", "72.0");
+			options.setCapability("platform", "Windows 10");
+			options.setCapability("username", "shaanstraining");
+			options.setCapability("accessKey", "0c7835c4-0571-4218-ac07-94ecc7c81154");
 			driver = new RemoteWebDriver(new URL(hub),options);
 		}	
 		if (browser.equalsIgnoreCase("firefox")) {
