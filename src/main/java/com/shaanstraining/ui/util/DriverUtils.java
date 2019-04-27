@@ -13,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class DriverUtils {
@@ -70,19 +71,16 @@ public class DriverUtils {
 	
 	public static RemoteWebDriver getDriver(RemoteWebDriver driver, String hub, String browser, String baseUrl) throws IOException,
 	FileNotFoundException, Exception {
-		if (browser.equalsIgnoreCase("chrome")) {
-			ChromeOptions options = new ChromeOptions();
-			options.setCapability("version", "72.0");
-			options.setCapability("platform", "Windows 10");
-			options.setCapability("username", "shaanstraining");
-			options.setCapability("accessKey", "0c7835c4-0571-4218-ac07-94ecc7c81154");
-			driver = new RemoteWebDriver(new URL(hub),options);
-		}	
-		if (browser.equalsIgnoreCase("firefox")) {
-			FirefoxOptions options = new FirefoxOptions();
-			//options.setCapability("version", "");
-			driver = new RemoteWebDriver(new URL(hub),options);
-		}
+		
+		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+		desiredCapabilities.setBrowserName(System.getenv("SELENIUM_BROWSER"));
+		desiredCapabilities.setVersion(System.getenv("SELENIUM_VERSION"));
+		desiredCapabilities.setCapability(CapabilityType.PLATFORM, System.getenv("SELENIUM_PLATFORM"));
+		
+		/*desiredCapabilities.setCapability("username", "shaanstraining");
+		desiredCapabilities.setCapability("accessKey", "0c7835c4-0571-4218-ac07-94ecc7c81154");*/
+		
+		driver = new RemoteWebDriver(new URL(hub), desiredCapabilities);
 		driver.get(baseUrl);
 		
 		return driver;
