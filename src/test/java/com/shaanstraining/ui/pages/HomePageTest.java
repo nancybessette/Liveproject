@@ -15,7 +15,7 @@ public class HomePageTest extends BaseTest{
 	HomePage homePage = new HomePage();
 	
 	public HomePageTest() {
-		super();
+		super("http://www.google.com");
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class HomePageTest extends BaseTest{
 	}
 	
 	@AfterMethod
-    public void cleanUpAfterTestMethod(ITestResult result) {
+    public void tearDown(ITestResult result) {
         ((JavascriptExecutor)driver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
         driver.quit();
     }

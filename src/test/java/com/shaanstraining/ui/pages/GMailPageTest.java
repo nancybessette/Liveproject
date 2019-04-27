@@ -12,18 +12,20 @@ import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.yaml.snakeyaml.Yaml;
 
-public class GMailPageTest {
-	WebDriver driver;
+public class GMailPageTest extends BaseTest{
+	//WebDriver driver;
 	static final Logger log = LogManager.getLogger(GMailPageTest.class);
 	
 	private static final String YAML_DATA =
@@ -31,11 +33,15 @@ public class GMailPageTest {
 						"password: mytmppsswrd\n";
 	private static final String YAML_FILE = "src/test/resources/login-ui.yml";
 	
-	@BeforeMethod
+	/*@BeforeMethod
 	void setUpMethod() { 
 		System.setProperty("webdriver.chrome.driver", "/Users/shaan/Downloads/chromedriver");
         driver = new ChromeDriver();        
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+	}*/
+	
+	public GMailPageTest() {
+		super("https://www.gmail.com");
 	}
 	
 	@DataProvider(name = "dp")
@@ -73,12 +79,12 @@ public class GMailPageTest {
 		return users2DArray;	   
 	}
 	
-	@Test(dataProvider="dp2")
+	@Test(dataProvider="dp")
 	public void loginTest(String user, String pwd) {		
 		log.info("gmailPageTest: username: " + user + "\t password: " + pwd);
 		WebDriverWait wait = new WebDriverWait(driver, 6);
 		
-		driver.get("https://www.gmail.com");
+		//driver.get("https://www.gmail.com");
 		
 		driver.findElement(By.id("identifierId")).sendKeys(user);
 		driver.findElement(By.id("identifierNext")).click();
@@ -96,8 +102,9 @@ public class GMailPageTest {
 	}
 	
 	@AfterMethod
-	void tearDown() {
-		driver.quit();
-	}
+    public void tearDown(ITestResult result) {
+        ((JavascriptExecutor)driver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
+        driver.quit();
+    }
 	
 }

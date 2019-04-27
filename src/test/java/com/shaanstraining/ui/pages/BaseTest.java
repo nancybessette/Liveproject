@@ -13,9 +13,9 @@ public abstract class BaseTest {
 	protected RemoteWebDriver driver;
 	private Properties props = getProperties();
 	
-	public BaseTest() {
+	public BaseTest(String baseUrl) {
 		try {
-			String baseUrl = props.getProperty("baseUrl");
+			//String baseUrl = props.getProperty("baseUrl");
 			String browser = props.getProperty("defaultBrowser");
 			
 			String hub = (String) props.getOrDefault("hub", "");
