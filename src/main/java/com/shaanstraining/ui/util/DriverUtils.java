@@ -73,14 +73,20 @@ public class DriverUtils {
 	FileNotFoundException, Exception {
 		
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+		
+		/*desiredCapabilities.setBrowserName("Chrome");
+		desiredCapabilities.setVersion("71.0");
+		desiredCapabilities.setCapability(CapabilityType.PLATFORM, "Windows 10");
+		desiredCapabilities.setCapability("username", "shaanstraining");
+		desiredCapabilities.setCapability("accessKey", "0c7835c4-0571-4218-ac07-94ecc7c81154");
+		desiredCapabilities.setCapability("name", "shaanstraining UI Test");*/
+		
 		desiredCapabilities.setBrowserName(System.getenv("SELENIUM_BROWSER"));
 		desiredCapabilities.setVersion(System.getenv("SELENIUM_VERSION"));
 		desiredCapabilities.setCapability(CapabilityType.PLATFORM, System.getenv("SELENIUM_PLATFORM"));
-		
-		/*desiredCapabilities.setCapability("username", "shaanstraining");
-		desiredCapabilities.setCapability("accessKey", "0c7835c4-0571-4218-ac07-94ecc7c81154");*/
 		desiredCapabilities.setCapability("username", System.getenv("SAUCE_USERNAME"));
 		desiredCapabilities.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+		desiredCapabilities.setCapability("name", "shaanstraining UI Test");
 		
 		driver = new RemoteWebDriver(new URL(hub), desiredCapabilities);
 		driver.get(baseUrl);
